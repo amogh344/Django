@@ -1,5 +1,8 @@
-{% extends "base_page.html" %} {% block title %}Contact Us{% endblock %} {%
-block content %}
+{% extends "base_page.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
 <div class="row justify-content-center">
   <div class="col-md-8 col-lg-6">
     <div class="card shadow">
@@ -7,9 +10,13 @@ block content %}
         <h1 class="card-title text-center mb-4">Contact Form</h1>
 
         <form method="POST" novalidate>
-          {% csrf_token %} {% for field in form %}
+          {% csrf_token %}
+          
+          {% for field in form %}
           <div class="mb-3">
-            {{ field.label_tag }} {{ field }} {% if field.errors %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
             <div class="text-danger small mt-1">
               {{ field.errors|striptags }}
             </div>

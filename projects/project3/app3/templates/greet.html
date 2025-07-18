@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
+        <h1>Welcome to Super 100</h1>
+        <hr>
+        {% for user in users %}
+            <h2>Hi, {{ user.name }} (Age: {{ user.age }})</h2>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5 shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'landing' %}">Super 100</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto align-items-lg-center">
+
+        <a
+          href="{% url 'landing' %}"
+          class="nav-link {% if request.path == '/' %}active fw-bold{% endif %}"
+        >
+          Home
+        </a>
+
+        <a
+          href="{% url 'pricing' %}"
+          class="nav-link {% if request.path == '/pricing/' %}active fw-bold{% endif %}"
+        >
+          Pricing
+        </a>
+
+        {% comment %} <a
+          href="{% url 'greet' %}"
+          class="nav-link {% if request.path == '/greet/' %}active fw-bold{% endif %}"
+        >
+          Greet
+        </a> {% endcomment %}
+
+        <a
+          href="{% url 'student' %}"
+          class="nav-link {% if request.path == '/student/' %}active fw-bold{% endif %}"
+        >
+          Students
+        </a>
+
+        <a
+          href="{% url 'contact' %}"
+          class="nav-link {% if request.path == '/contact/' %}active fw-bold{% endif %}"
+        >
+          Contact
+        </a>
+
+        <!-- Divider for mobile view -->
+        <div class="dropdown-divider d-lg-none my-2"></div>
+
+        <a 
+          href="#"
+          class="nav-link btn btn-outline-primary mx-lg-2 my-1 my-lg-0 px-3"
+        >
+          Register
+        </a>
+
+        <a 
+          href="#"
+          class="nav-link btn btn-primary my-1 my-lg-0 px-3"
+        >
+          Login
+        </a>
+
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Welcome to Super 100{% endblock %} {%
+block content %}
+<div class="d-flex flex-column flex-lg-row align-items-center">
+  <div class="flex-grow-1">
+    <h1 class="display-4">Task Scheduler</h1>
+    <p class="lead text-muted">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis illo
+      suscipit id esse iure! Neque animi nostrum vero! Recusandae eligendi a
+      dolores possimus repellendus autem libero soluta alias sed maxime.
+    </p>
+    <a href="{% url 'pricing' %}" class="btn btn-primary btn-lg">Get Started</a>
+  </div>
+  <div class="flex-shrink-0 mt-4 mt-lg-0 ms-lg-5">
+    <img
+      src="https://i.pinimg.com/736x/09/da/96/09da96ca14b546b26ad8297557bcb5b8.jpg"
+      alt="Task Management"
+      class="img-fluid rounded shadow"
+      style="max-width: 500px"
+    />
+  </div>
+</div>
+{% endblock %}

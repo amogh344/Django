@@ -17,27 +17,24 @@ cards = [
     {'title': 'Advanced', 'description': 'This is an Advanced plan', 'original_price': 100, 'updated_price': 1110},
 ]
 
-
-def student_info_view(request):
-    form = StudentForm()
-    return render(request, 'Student_info.html', {'form': form})
-
-def landingpage(request):
-    return render(request, 'landingpage.html')
-
+def landing_page_view(request):
+    return render(request, 'landing_page.html')  # ✅ matches your template
 
 def pricing_page_view(request):
-    return render(request, 'pricingPage.html', {'cards': cards})
-
+    return render(request, 'pricing_page.html', {'cards': cards})  # ✅ matches your template
 
 def contact_page_view(request):
     if request.method == 'POST':
-        f = ContactForm(request.POST)
-        if f.is_valid():
+        form = ContactForm(request.POST)
+        if form.is_valid():
             print("Your request is recorded")
         else:
             print("Your request is not recorded")
-        return render(request, 'contact.html', {'form': f})
+        return render(request, 'contact_page.html', {'form': form})
     else:
-        f = ContactForm()
-        return render(request, 'contact.html', {'form': f})
+        form = ContactForm()
+        return render(request, 'contact_page.html', {'form': form})
+
+def student_info_view(request):
+    form = StudentForm()
+    return render(request, 'student_info.html', {'form': form})  # ✅ matches your file

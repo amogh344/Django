@@ -38,12 +38,12 @@
           Greet
         </a> {% endcomment %}
 
-        <a
+        {% comment %} <a
           href="{% url 'student' %}"
           class="nav-link {% if request.path == '/student/' %}active fw-bold{% endif %}"
         >
           Students
-        </a>
+        </a> {% endcomment %}
 
         <a
           href="{% url 'contact' %}"

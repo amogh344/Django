@@ -5,15 +5,6 @@
         <form method="POST" class="form" noValidate>
             {% csrf_token %}
             <div class="row">
-                {% comment %} <div class="col-6 my-3">
-                    <input class="form-control" type="text" placeholder="Username" name="name" value="{{ form.name.value }}" />
-                </div>
-                <div class="col-6 my-3">
-                    <input class="form-control" type="email" placeholder="Email" name="email" value="{{ form.email.value }}" />
-                </div>
-                <div class="col-12 my-3">
-                    <textarea class="form-control" rows="6" placeholder="Message" name="message">{{ form.message.value }}</textarea>
-                </div> {% endcomment %}
                 {{ form.as_div}}
                 <center>
                     <button type="submit" class="btn btn-success px-5">Send</button>

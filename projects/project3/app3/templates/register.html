@@ -49,6 +49,7 @@
 
                 <div class="container">
                     <form method="POST">
+                        {% csrf_token %}
                         <input
                             class="form-control mb-4"
                             name="username"

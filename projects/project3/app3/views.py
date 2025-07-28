@@ -40,6 +40,8 @@ def landing(request):
 def pricing(request):
     return render(request, 'pricing.html', {'cards': cards})
 
+def register(request):
+    return render(request, 'register.html')
 
 def contact(request):
     if request.method == 'POST':

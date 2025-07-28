@@ -12,6 +12,8 @@
 from django.shortcuts import render
 from .forms import StudentForm, ContactForm
 from django.http import HttpResponse
+from django.contrib import messages
+
 
 # def greet(request):
 #     return HttpResponse("Hello from greet view!")
@@ -40,8 +42,21 @@ def landing(request):
 def pricing(request):
     return render(request, 'pricing.html', {'cards': cards})
 
+# views.py
+
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
+
 def register(request):
-    return render(request, 'register.html')
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('loginPage')  # Make sure 'loginPage' exists in urls
+    else:
+        form = RegisterForm()
+
+    return render(request, 'register.html', {'form': form})
 
 def contact(request):
     if request.method == 'POST':

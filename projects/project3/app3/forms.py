@@ -1,5 +1,6 @@
 from django import forms
 from .models import Student
+from django.contrib.auth.models import User
 
 class ContactForm(forms.Form):
     name = forms.CharField(label='Name', max_length=40, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username', 'required': True}))

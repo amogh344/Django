@@ -1,16 +1,203 @@
+# # from django.shortcuts import render, redirect
+# # from django.contrib import messages
+# # from django.contrib.auth import authenticate,login,logout
+# # from .forms import StudentForm, ContactForm, RegisterForm, LoginForm
+# # from .models import Student
+
+# # # Pricing card data
+# # cards = [
+# #     {
+# #         'title': 'Personal',
+# #         'description': 'This is a personal plan',
+# #         'original_price': 100,
+# #         'updated_price': 110
+# #     },
+# #     {
+# #         'title': 'Starter',
+# #         'description': 'This is a Starter plan',
+# #         'original_price': 100,
+# #         'updated_price': 50
+# #     },
+# #     {
+# #         'title': 'Advanced',
+# #         'description': 'This is an Advanced plan',
+# #         'original_price': 100,
+# #         'updated_price': 1110
+# #     },
+# # ]
+
+# # # Login view
+# # def login(request):
+# #     form = LoginForm(request.POST or None)
+# #     if request.method == 'POST' and form.is_valid():
+# #         username = form.cleaned_data['username']
+# #         password = form.cleaned_data['password']
+
+# #         user = authenticate(request,username,password)
+
+# #         if user is not None:
+# #             login(request,user)
+# #             return redirect('dashboard')
+# #         else:
+# #             return redirect('login')
+# #         messages.success(request, f"Welcome back, {username}!")
+# #         return redirect('landing')  
+# #     return render(request, 'login.html', {'form': form})
+
+# # # Student form view
+# # def student(request):
+# #     if request.method == 'POST':
+# #         form = StudentForm(request.POST)
+# #         if form.is_valid():
+# #             form.save()
+# #             messages.success(request, "Student registered successfully.")
+# #             return redirect('student')
+# #     else:
+# #         form = StudentForm()
+# #     return render(request, 'student.html', {'form': form})
+
+# # # Landing page view
+# # def landing(request):
+# #     return render(request, 'landing.html')
+
+# # # Pricing page view
+# # def pricing(request):
+# #     return render(request, 'pricing.html', {'cards': cards})
+
+# # # Registration view
+# # def register(request):
+# #     if request.method == 'POST':
+# #         form = RegisterForm(request.POST)
+# #         if form.is_valid():
+# #             form.save()
+# #             messages.success(request, "Registration successful.")
+# #             return redirect('login')  # Replace with actual login page URL name
+# #     else:
+# #         form = RegisterForm()
+# #     return render(request, 'register.html', {'form': form})
+
+# # # Contact form view
+# # def contact(request):
+# #     if request.method == 'POST':
+# #         form = ContactForm(request.POST)
+# #         if form.is_valid():
+# #             messages.success(request, "Your request has been recorded.")
+# #         else:
+# #             messages.error(request, "There was an error with your submission.")
+# #         return render(request, 'contact.html', {'form': form})
+# #     else:
+# #         form = ContactForm()
+# #     return render(request, 'contact.html', {'form': form})
+
+# #view.py
+
+# from django.shortcuts import render, redirect
+# from django.contrib import messages
+# from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+# from .forms import StudentForm, ContactForm, RegisterForm, LoginForm
+# from .models import Student
+
+# # Pricing card data
+# cards = [
+#     {
+#         'title': 'Personal',
+#         'description': 'This is a personal plan',
+#         'original_price': 100,
+#         'updated_price': 110
+#     },
+#     {
+#         'title': 'Starter',
+#         'description': 'This is a Starter plan',
+#         'original_price': 100,
+#         'updated_price': 50
+#     },
+#     {
+#         'title': 'Advanced',
+#         'description': 'This is an Advanced plan',
+#         'original_price': 100,
+#         'updated_price': 1110
+#     },
+# ]
+
+# # Login view
+# def login(request):
+#     form = LoginForm(request.POST or None)
+#     if request.method == 'POST' and form.is_valid():
+#         username = form.cleaned_data['username']
+#         password = form.cleaned_data['password']
+#         user = authenticate(request, username=username, password=password)
+
+#         if user is not None:
+#             auth_login(request, user)
+#             messages.success(request, f"Welcome back, {username}!")
+#             return redirect('dashboard')  # Or your desired landing view
+#         else:
+#             messages.error(request, "Invalid credentials. Please try again.")
+#             return redirect('login')
+
+#     return render(request, 'login.html', {'form': form})
+
+# # Student form view
+# def student(request):
+#     if request.method == 'POST':
+#         form = StudentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Student registered successfully.")
+#             return redirect('student')
+#     else:
+#         form = StudentForm()
+#     return render(request, 'student.html', {'form': form})
+
+# # Landing page view
+# def landing(request):
+#     return render(request, 'landing.html')
+
+# def dashboard(request):
+#     return render(request, 'dashboard.html')
+
+# def logout(request):
+#     return render(request, 'logout.html')
+
+# # Pricing page view
+# def pricing(request):
+#     return render(request, 'pricing.html', {'cards': cards})
+
+# # Registration view
+# def register(request):
+#     if request.method == 'POST':
+#         form = RegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Registration successful. Please log in.")
+#             return redirect('login')
+#     else:
+#         form = RegisterForm()
+#     return render(request, 'register.html', {'form': form})
+
+# # Contact form view
+# def contact(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             messages.success(request, "Your request has been recorded.")
+#         else:
+#             messages.error(request, "There was an error with your submission.")
+#         return render(request, 'contact.html', {'form': form})
+#     else:
+#         form = ContactForm()
+#     return render(request, 'contact.html', {'form': form})
+
+
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from .forms import StudentForm, ContactForm, RegisterForm, LoginForm
+from .models import Student
 
-# Sample user and card data
-users = [
-    {'name': 'Amogh', 'age': 21},
-    {'name': 'Brahma', 'age': 21},
-    {'name': 'Joe Goldberg', 'age': 21},
-]
-
+# Pricing card data
 cards = [
     {
         'title': 'Personal',
@@ -32,53 +219,58 @@ cards = [
     },
 ]
 
-# View to handle login
 def login(request):
     form = LoginForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password']
-            )
-            if user is not None:
-                auth_login(request, user)
-                return redirect('home')  # Replace with actual home page name
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, f"Welcome , {username}!")
+            next_url = request.GET.get('next', 'dashboard')
+            return redirect(next_url)
+        else:
+            messages.error(request, "Invalid credentials. Please try again.")
+            return redirect('login')
+
     return render(request, 'login.html', {'form': form})
 
-# View to handle student form
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def logout(request):
+    auth_logout(request)
+    messages.success(request, "You have been logged out successfully.")
+    return redirect('landing')
+
 def student(request):
-    form = StudentForm()
+    form = StudentForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, "Student registered successfully.")
+        return redirect('student')
     return render(request, 'student.html', {'form': form})
 
-# Landing page view
 def landing(request):
     return render(request, 'landing.html')
 
-# Pricing page with card info
 def pricing(request):
     return render(request, 'pricing.html', {'cards': cards})
 
-# User registration view
 def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')  # Replace with actual login page URL name
-    else:
-        form = RegisterForm()
+    form = RegisterForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, "Registration successful. Please log in.")
+        return redirect('login')
     return render(request, 'register.html', {'form': form})
 
-# Contact form view
 def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            print("Your request is recorded")
-        else:
-            print("Your request is not recorded")
-        return render(request, 'contact.html', {'form': form})
-    else:
-        form = ContactForm()
-        return render(request, 'contact.html', {'form': form})
+    form = ContactForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        messages.success(request, "Your request has been recorded.")
+        return redirect('contact')
+    return render(request, 'contact.html', {'form': form})

@@ -2,72 +2,42 @@
   <div class="container">
     <a class="navbar-brand fw-bold" href="{% url 'landing' %}">Home</a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <div class="navbar-nav ms-auto align-items-lg-center">
-
-        {% comment %} <a
-          href="{% url 'landing' %}"
-          class="nav-link {% if request.path == '/' %}active fw-bold{% endif %}"
-        >
-          Home
-        </a> {% endcomment %}
-
-        <a
-          href="{% url 'pricing' %}"
-          class="nav-link {% if request.path == '/pricing/' %}active fw-bold{% endif %}"
-        >
+        
+        <a href="{% url 'pricing' %}" class="nav-link {% if request.path == '/pricing/' %}active fw-bold{% endif %}">
           Pricing
         </a>
 
-        {% comment %} <a
-          href="{% url 'greet' %}"
-          class="nav-link {% if request.path == '/greet/' %}active fw-bold{% endif %}"
-        >
-          Greet
-        </a> {% endcomment %}
-
-        {% comment %} <a
-          href="{% url 'student' %}"
-          class="nav-link {% if request.path == '/student/' %}active fw-bold{% endif %}"
-        >
-          Students
-        </a> {% endcomment %}
-
-        <a
-          href="{% url 'contact' %}"
-          class="nav-link {% if request.path == '/contact/' %}active fw-bold{% endif %}"
-        >
+        <a href="{% url 'contact' %}" class="nav-link {% if request.path == '/contact/' %}active fw-bold{% endif %}">
           Contact
         </a>
 
-        <!-- Divider for mobile view -->
-        <div class="dropdown-divider d-lg-none my-2"></div>
+        {% if user.is_authenticated %}
+          <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == '/dashboard/' %}active fw-bold{% endif %}">
+            Dashboard
+          </a>
 
-        <a 
-          href="{% url 'register' %}"
-          class="nav-link btn btn-outline-primary mx-lg-2 my-1 my-lg-0 px-3"
-        >
-          Register
-        </a>
+          <a href="{% url 'logout' %}" class="nav-link btn btn-danger mx-lg-2 my-1 my-lg-0 px-3">
+            Logout
+          </a>
+        {% else %}
+          <!-- Divider for mobile view -->
+          <div class="dropdown-divider d-lg-none my-2"></div>
 
-        <a 
-          href="{% url 'login' %}"
-          class="nav-link btn btn-primary my-1 my-lg-0 px-3"
-        >
-          Login
-        </a>
+          <a href="{% url 'register' %}" class="nav-link btn btn-outline-primary mx-lg-2 my-1 my-lg-0 px-3">
+            Register
+          </a>
+
+          <a href="{% url 'login' %}" class="nav-link btn btn-primary my-1 my-lg-0 px-3">
+            Login
+          </a>
+        {% endif %}
 
       </div>
     </div>

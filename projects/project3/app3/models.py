@@ -1,4 +1,9 @@
 from django.db import models
+
 class Student(models.Model):
-    name =models.CharField(max_length=50)
-    age = models.IntegerField()
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.username

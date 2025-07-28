@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="container">
+    <div
+        class="shadow-lg bg-light border border-warning rounded-3 p-3 mx-auto my-5"
+        style="max-width: 23%; min-height: 60%"
+    >
+        <h1 class="text-center my-4" style="font-family: Verdana;">
+            Login
+        </h1>
+
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button class="btn btn-success" type="submit">
+                        Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="my-3">
+                <center>
+                    Don't have an account?
+                    <a href="/register" class="text-decoration-none fw-bold">
+                        Register
+                    </a>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

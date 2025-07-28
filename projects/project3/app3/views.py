@@ -1,23 +1,10 @@
-# from django.urls import path
-# from . import views
-
-# urlpatterns = [
-#     path('greet/', views.greet, name='greet'),
-#     path('', views.landing_page_view, name='landingpage'),
-#     path('pricing/', views.pricing_page_view, name='pricing'),
-#     path('contact/', views.contact_page_view, name='contact'),
-#     path('student/', views.StudentInfoView, name='student'),
-# ]
-
-from django.shortcuts import render
-from .forms import StudentForm, ContactForm
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth import authenticate, login as auth_login
+from .forms import StudentForm, ContactForm, RegisterForm, LoginForm
 
-
-# def greet(request):
-#     return HttpResponse("Hello from greet view!")
-
+# Sample user and card data
 users = [
     {'name': 'Amogh', 'age': 21},
     {'name': 'Brahma', 'age': 21},
@@ -25,47 +12,73 @@ users = [
 ]
 
 cards = [
-    {'title': 'Personal', 'description': 'This is a personal plan', 'original_price': 100, 'updated_price': 110},
-    {'title': 'Starter', 'description': 'This is a Starter plan', 'original_price': 100, 'updated_price': 50},
-    {'title': 'Advanced', 'description': 'This is an Advanced plan', 'original_price': 100, 'updated_price': 1110},
+    {
+        'title': 'Personal',
+        'description': 'This is a personal plan',
+        'original_price': 100,
+        'updated_price': 110
+    },
+    {
+        'title': 'Starter',
+        'description': 'This is a Starter plan',
+        'original_price': 100,
+        'updated_price': 50
+    },
+    {
+        'title': 'Advanced',
+        'description': 'This is an Advanced plan',
+        'original_price': 100,
+        'updated_price': 1110
+    },
 ]
 
+# View to handle login
+def login(request):
+    form = LoginForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password']
+            )
+            if user is not None:
+                auth_login(request, user)
+                return redirect('home')  # Replace with actual home page name
+    return render(request, 'login.html', {'form': form})
 
+# View to handle student form
 def student(request):
     form = StudentForm()
     return render(request, 'student.html', {'form': form})
 
+# Landing page view
 def landing(request):
     return render(request, 'landing.html')
 
-
+# Pricing page with card info
 def pricing(request):
     return render(request, 'pricing.html', {'cards': cards})
 
-# views.py
-
-from django.shortcuts import render, redirect
-from .forms import RegisterForm
-
+# User registration view
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('loginPage')  # Make sure 'loginPage' exists in urls
+            return redirect('login')  # Replace with actual login page URL name
     else:
         form = RegisterForm()
-
     return render(request, 'register.html', {'form': form})
 
+# Contact form view
 def contact(request):
     if request.method == 'POST':
-        f = ContactForm(request.POST)
-        if f.is_valid():
+        form = ContactForm(request.POST)
+        if form.is_valid():
             print("Your request is recorded")
         else:
             print("Your request is not recorded")
-        return render(request, 'contact.html', {'form': f})
+        return render(request, 'contact.html', {'form': form})
     else:
-        f = ContactForm()
-        return render(request, 'contact.html', {'form': f})
+        form = ContactForm()
+        return render(request, 'contact.html', {'form': form})

@@ -3,7 +3,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .forms import StudentForm, ContactForm, RegisterForm, LoginForm
-from .models import Student
+from .models import Student, TaskBoard
+from rest_framework import viewsets
+from .serializers import TaskSerializer
 
 # Pricing card data
 cards = [
@@ -82,3 +84,8 @@ def contact(request):
         messages.success(request, "Your request has been recorded.")
         return redirect('contact')
     return render(request, 'contact.html', {'form': form})
+
+
+class TaskView(viewsets.ModelViewSet):
+    queryset = TaskBoard.objects.all()
+    serializer_class = TaskSerializer

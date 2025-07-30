@@ -1,0 +1,2 @@
+namespace export - any number of functions, function name cant change
+end of file export - only one function, function name can be changed

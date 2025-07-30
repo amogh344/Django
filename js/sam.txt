@@ -1,0 +1,82 @@
+javascript 
+output methods:
+    alert(msg): displays output in dialog box
+    document.write():displays output in the new page
+    document.getElementById(id).innerHTML = msg: to display in same page
+    console.log('msg'):displays output in console
+
+
+datatypes:
+    primitive datatypes
+        string
+        number
+        boolean
+        null
+        undefined
+    Non primitive datatypes
+        arrays
+        objects
+        regex
+
+
+primitive:
+    strings:
+        can be enclosed in double quoutes or single or backticks
+        backticks for multi-line strings
+    number:
+        a pool of all the numbers
+    boolean:
+        true or false
+    null:
+        empty
+    undefined:
+        the value is not defined
+    
+Non primitive:
+    arrays:
+        collection of same datatypes
+    objects:
+        instantiation of class, has state and behaviour
+    regex:
+        used to figure out the equations (patterns)
+
+
+
+javascript variable declaration:
+    var,const,let
+
+    var:
+        has global scope 
+    let:
+        local scope
+    const:
+        constant value
+
+
+
+string methods:
+    indexOf
+    lastIndexOf
+    toUpperCase
+    toLowerCase
+    concat
+
+
+
+
+Array methods:
+    concat()
+    find()
+    findIndex()
+    pop()
+    push()
+    shift()
+    unshift()
+    indexOf()
+    lastIndexOf()
+    map()
+    every()
+    some()
+    filter()
+    sort()
+    reverse()
